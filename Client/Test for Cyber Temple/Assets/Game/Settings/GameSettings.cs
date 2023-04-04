@@ -6,6 +6,6 @@ namespace Game.Settings
     {
         public ComplexityType ComplexityType = ComplexityType.Easy;
         public CristalSpawnType CristalSpawnType = CristalSpawnType.Random;
-        public float GameSpeed = 1;
+        public float GameSpeed = 1f;
     }
 }

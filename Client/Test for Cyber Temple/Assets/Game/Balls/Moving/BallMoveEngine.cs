@@ -1,5 +1,5 @@
-using System;
 using Game.Balls.Input;
+using Game.Scenes.Common;
 using Game.Settings;
 using UnityEngine;
 using Zenject;
@@ -11,6 +11,7 @@ namespace Game.Balls.Moving
         [SerializeField] private BallInputHandler ballInputHandler;
         private Vector3 _direction;
         private GameSettings _settings;
+        private SignalBus _signalBus;
         private float _speed;
 
         private void Update()
@@ -20,12 +21,22 @@ namespace Game.Balls.Moving
 
         private void FixedUpdate()
         {
-            transform.Translate(_direction * _speed);
+            transform.Translate(_direction * (Time.deltaTime * _speed)  );
+            if (transform.position.y < 0)
+            {
+                _signalBus.Fire(new RoundFinishedSignal());
+            }
         }
 
-        public void Init(float speed)
+        private void OnEnable()
+        {
+            _direction = Vector3.forward;
+        }
+
+        public void Init(float speed,SignalBus signalBus)
         {
             _speed = speed;
+            _signalBus = signalBus;
         }
     }
 }

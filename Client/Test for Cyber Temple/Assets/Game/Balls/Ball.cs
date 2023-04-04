@@ -1,3 +1,4 @@
+using System;
 using Game.Balls.Input;
 using Game.Balls.Moving;
 using Game.Balls.View;
@@ -12,7 +13,6 @@ namespace Game.Balls
     [RequireComponent(typeof(BallMoveEngine))]
     public class Ball : MonoBehaviour
     {
-        [SerializeField] private BallInputHandler _input;
         [SerializeField] private BallMoveEngine _move;
 
         private readonly BallModelType _modelType = BallModelType.Default;
@@ -38,19 +38,18 @@ namespace Game.Balls
             _signalBus.Unsubscribe<RoundFinishedSignal>(OnRoundFinish);
         }
 
+        private void OnStartRound()
+        {
+            _move.enabled = true;
+            _move.Init(_settings.GameSpeed, _signalBus);
+        }
+
         private void OnRoundFinish()
         {
-            _input.enabled = false;
             _move.enabled = false;
             transform.position = Vector3.zero;
         }
 
-        private void OnStartRound()
-        {
-            _input.enabled = true;
-            _move.enabled = true;
-            _move.Init(_settings.GameSpeed);
-        }
 
         [Inject]
         public void Construct(BallModels models, GameSettings settings, SignalBus signalBus)

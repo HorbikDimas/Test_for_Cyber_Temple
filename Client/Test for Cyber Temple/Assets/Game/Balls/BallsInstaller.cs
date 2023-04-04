@@ -1,6 +1,4 @@
 using Game.Balls.Camera;
-using Game.Balls.Input;
-using Game.Balls.Moving;
 using UnityEngine;
 using Zenject;
 
@@ -16,7 +14,6 @@ namespace Game.Balls
         {
             BindCamera();
             BindBall();
-            
         }
 
         private void BindCamera()
