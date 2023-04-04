@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5074678333112509348
 MonoBehaviour:
@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e6589720da476459dc6dd71624b071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: c7270cd88965b56499bd9a79cde97ceb, type: 2}
+  - {fileID: 11400000, guid: 572c765364a4a234aa563a014efbffff, type: 2}
   _monoInstallers: []
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
@@ -52,7 +54,7 @@ MonoBehaviour:
   _buildsReflectionBakingCoverageMode: 0
   _settings:
     _ensureDeterministicDestructionOrderOnApplicationQuit: 0
-    _displayWarningWhenResolvingDuringInstall: 1
+    _displayWarningWhenResolvingDuringInstall: 0
     _validationRootResolveMethod: 0
     _validationErrorResponse: 0
     _signalSettings:
