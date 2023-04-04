@@ -1,3 +1,4 @@
+using Game.Scenes.Common;
 using Zenject;
 
 namespace Game.Scenes
@@ -6,7 +7,10 @@ namespace Game.Scenes
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<SceneController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ScenesController>().AsSingle();
+            
+            Container.DeclareSignal<SceneLoadingSignal>().OptionalSubscriber();
+            Container.DeclareSignal<RoundFinishedSignal>().OptionalSubscriber();
         }
     }
 }
