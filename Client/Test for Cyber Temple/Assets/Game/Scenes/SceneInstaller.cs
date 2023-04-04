@@ -11,6 +11,7 @@ namespace Game.Scenes
             
             Container.DeclareSignal<SceneLoadingSignal>().OptionalSubscriber();
             Container.DeclareSignal<RoundFinishedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<StartRoundSignal>().OptionalSubscriber();
         }
     }
 }

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d161ea3cd1eb247a37758ce116fc5d, type: 3}
+  m_Name: BallsInstaller
+  m_EditorClassIdentifier: 
+  ballCamera: {fileID: 4292469799461778548, guid: 306b009e88d354d40a8403067f717c32, type: 3}
+  ball: {fileID: 8360182248232194967, guid: dd3a696e1e588034ab6d50dba00d26c0, type: 3}
