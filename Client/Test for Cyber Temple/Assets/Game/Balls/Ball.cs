@@ -1,6 +1,7 @@
 using Game.Balls.Input;
 using Game.Balls.Moving;
 using Game.Balls.View;
+using Game.Settings;
 using UnityEngine;
 using Zenject;
 
@@ -23,9 +24,10 @@ namespace Game.Balls
         }
 
         [Inject]
-        public void Construct(BallModels models)
+        public void Construct(BallModels models, GameSettings settings)
         {
             _models = models;
+            _move.Init(settings);
         }
     }
 }

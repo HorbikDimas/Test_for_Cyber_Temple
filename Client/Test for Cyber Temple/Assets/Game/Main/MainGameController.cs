@@ -1,3 +1,6 @@
+using System;
+using Game.GUI;
+using Game.GUI.Game;
 using Game.Scenes.Common;
 using UnityEngine;
 using Zenject;
@@ -10,22 +13,33 @@ namespace Game.Main
 
         private void OnEnable()
         {
-            _signalBus.Subscribe<RoundFinishedSignal>(OnRoundFinished);
+            _signalBus.Subscribe<ButtonClickedSignal>(OnButtonClicked);
         }
 
         private void OnDisable()
         {
-            _signalBus.Unsubscribe<RoundFinishedSignal>(OnRoundFinished);
+            _signalBus.Unsubscribe<ButtonClickedSignal>(OnButtonClicked);
+        }
+
+        private void OnButtonClicked(ButtonClickedSignal signal)
+        {
+            switch (signal.View)
+            {
+                case ViewType.Round:
+                    _signalBus.Fire<StartRoundSignal>();
+                    break;
+                case ViewType.Menu:
+                    _signalBus.Fire<RoundFinishedSignal>();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
-        }
-
-        private void OnRoundFinished(RoundFinishedSignal signal)
-        {
         }
     }
 }

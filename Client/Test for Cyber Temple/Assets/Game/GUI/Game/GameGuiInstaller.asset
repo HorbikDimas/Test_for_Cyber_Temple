@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5026d4793c939b44b9ff8d46b642b11f, type: 3}
   m_Name: GameGuiInstaller
   m_EditorClassIdentifier: 
+  mainView: {fileID: 1192818815986047063, guid: 0a58f7173b5722d4b97ba8e8105e3525, type: 3}
+  roundView: {fileID: 552303611488439080, guid: c4278292895386e46aa6d7be0eba65c6, type: 3}
+  menuView: {fileID: 2972145334280849736, guid: 8147b74d31de2784b861833b4164a572, type: 3}

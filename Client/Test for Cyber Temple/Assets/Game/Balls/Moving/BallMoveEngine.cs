@@ -1,3 +1,4 @@
+using System;
 using Game.Balls.Input;
 using Game.Settings;
 using UnityEngine;
@@ -10,8 +11,12 @@ namespace Game.Balls.Moving
         [SerializeField] private BallInputHandler ballInputHandler;
         private Vector3 _direction;
         private GameSettings _settings;
-        private SignalBus _signalBus;
         private float _speed;
+
+        private void OnEnable()
+        {
+            _speed = _settings.GameSpeed;
+        }
 
         private void Update()
         {
@@ -23,10 +28,9 @@ namespace Game.Balls.Moving
             transform.Translate(_direction * _speed);
         }
 
-        public void Init(GameSettings settings, SignalBus signalBus)
+        public void Init(GameSettings settings)
         {
             _settings = settings;
-            _signalBus = signalBus;
         }
     }
 }
