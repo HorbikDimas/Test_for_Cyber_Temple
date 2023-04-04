@@ -59,7 +59,6 @@ namespace Game.GUI.Game.Menu
 
         private void OnStartGameClicked()
         {
-            Debug.Log("srdfg");
             _signalBus.Fire(new ButtonClickedSignal(ViewType.Round));
         }
     }

@@ -1,4 +1,3 @@
-using System;
 using Game.GUI;
 using Game.GUI.Game;
 using Game.Scenes.Common;
@@ -14,26 +13,24 @@ namespace Game.Main
         private void OnEnable()
         {
             _signalBus.Subscribe<ButtonClickedSignal>(OnButtonClicked);
+            _signalBus.Subscribe<RoundFinishedSignal>(OnRoundFinish);
         }
 
         private void OnDisable()
         {
             _signalBus.Unsubscribe<ButtonClickedSignal>(OnButtonClicked);
+            _signalBus.Unsubscribe<RoundFinishedSignal>(OnRoundFinish);
+        }
+
+        private void OnRoundFinish()
+        {
+            _signalBus.Fire(new ButtonClickedSignal(ViewType.Menu));
         }
 
         private void OnButtonClicked(ButtonClickedSignal signal)
         {
-            switch (signal.View)
-            {
-                case ViewType.Round:
-                    _signalBus.Fire<StartRoundSignal>();
-                    break;
-                case ViewType.Menu:
-                    _signalBus.Fire<RoundFinishedSignal>();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            if (signal.View == ViewType.Round)
+                _signalBus.Fire(new StartRoundSignal());
         }
 
         [Inject]

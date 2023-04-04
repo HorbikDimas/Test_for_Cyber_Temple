@@ -13,11 +13,6 @@ namespace Game.Balls.Moving
         private GameSettings _settings;
         private float _speed;
 
-        private void OnEnable()
-        {
-            _speed = _settings.GameSpeed;
-        }
-
         private void Update()
         {
             if (ballInputHandler.TapDown) _direction = _direction == Vector3.forward ? Vector3.right : Vector3.forward;
@@ -28,9 +23,9 @@ namespace Game.Balls.Moving
             transform.Translate(_direction * _speed);
         }
 
-        public void Init(GameSettings settings)
+        public void Init(float speed)
         {
-            _settings = settings;
+            _speed = speed;
         }
     }
 }
