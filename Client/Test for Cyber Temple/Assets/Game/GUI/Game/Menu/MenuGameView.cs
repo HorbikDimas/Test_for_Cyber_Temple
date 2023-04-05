@@ -10,7 +10,6 @@ namespace Game.GUI.Game.Menu
 {
     public class MenuGameView : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI cristalText;
         [SerializeField] private Button startGameButton;
         [SerializeField] private TMP_Dropdown complexityDropdown;
         [SerializeField] private TMP_Dropdown cristalSpawnDropdown;
@@ -21,7 +20,6 @@ namespace Game.GUI.Game.Menu
         private void OnEnable()
         {
             startGameButton.onClick.AddListener(OnStartGameClicked);
-            cristalText.text = PlayerPrefs.GetInt("Cristal").ToString();
             complexityDropdown.onValueChanged.AddListener(OnComplexityChanged);
             cristalSpawnDropdown.onValueChanged.AddListener(OnCristalSpawnChanged);
             speedInputField.text = _settings.GameSpeed.ToString(CultureInfo.InvariantCulture);

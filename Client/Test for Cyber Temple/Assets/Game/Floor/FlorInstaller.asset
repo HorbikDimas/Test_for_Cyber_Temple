@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f382ea574d41941bc15b84e002e1ee, type: 3}
   m_Name: FlorInstaller
   m_EditorClassIdentifier: 
+  florController: {fileID: 5286417824296369413, guid: bdff667712c4b3d47a3bb18cda151cc3, type: 3}
+  cristalController: {fileID: 3159971063775598470, guid: 5945990753924bd4f81c4febbaec6ed7, type: 3}
+  cristalBody: {fileID: 3894375896897717714, guid: 9ed092e915f3d1a4a94798f069db93af, type: 3}

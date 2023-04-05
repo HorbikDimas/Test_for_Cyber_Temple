@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Game.Floor.Cristal;
 using Game.GUI.Game;
 using Game.Scenes.Common;
 using Game.Settings;
@@ -10,16 +12,20 @@ namespace Game.Floor
 {
     public class FlorController : MonoBehaviour
     {
+        private const int StartsScaleMainSegment = 3;
         [SerializeField] private Transform startPosition;
-        [SerializeField] private Transform[] segmentFlor;
+        public Transform[] segmentFlor;
+        
         private int _indexSegment;
         private Vector3 _positionSegment;
         private bool _roundActive;
         private float _scaleSegment;
         private GameSettings _settings;
+        
         private SignalBus _signalBus;
         private float _timer;
         private float _timerSpawn;
+        
 
         private void Update()
         {
@@ -29,7 +35,6 @@ namespace Game.Floor
             UpdateSegment();
             _timer = 0;
         }
-
 
         private void OnEnable()
         {
@@ -45,6 +50,19 @@ namespace Game.Floor
 
 
         private void OnStartRound()
+        {
+            StartSegment();
+        }
+
+        private void OnRoundFinish()
+        {
+            _roundActive = false;
+            _positionSegment = Vector3.zero;
+            _indexSegment = 0;
+        }
+        
+
+        private void StartSegment()
         {
             _scaleSegment = _settings.ComplexityType switch
             {
@@ -73,18 +91,12 @@ namespace Game.Floor
 
             _roundActive = true;
             _timerSpawn = _scaleSegment / _settings.GameSpeed;
-            _timer = -_timerSpawn;
-        }
-
-        private void OnRoundFinish()
-        {
-            _roundActive = false;
-            _positionSegment = Vector3.zero;
-            _indexSegment = 0;
+            _timer = -(StartsScaleMainSegment/_settings.GameSpeed);
         }
 
         private void UpdateSegment()
         {
+            _signalBus.Fire(new SegmentMovingSignal(_indexSegment));
             segmentFlor[_indexSegment].localPosition = _positionSegment;
             if (Random.value < 0.5f)
                 _positionSegment += Vector3.forward * _scaleSegment;
@@ -101,6 +113,7 @@ namespace Game.Floor
         {
             _signalBus = signalBus;
             _settings = settings;
+
         }
     }
 }
